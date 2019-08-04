@@ -1,0 +1,35 @@
+server:
+  port: 8080
+
+#数据库配置
+spring:
+  datasource:
+    #alibaba数据连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    #postgresql驱动
+    driverClassName: org.postgresql.Driver
+    #数据库地址、账号、密码
+    url: jdbc:postgresql://127.0.0.1:5432/postgres
+    username: postgres
+    password: 123456
+    druid:
+      #初始化连接大小
+      initial-size: 8
+      #最小空闲连接数
+      min-idle: 5
+      #最大连接数
+      max-active: 10
+      #查询超时时间
+      query-timeout: 6000
+      #事务查询超时时间
+      transaction-query-timeout: 6000
+      #关闭空闲连接超时时间
+      remove-abandoned-timeout: 1800
+      filters: stat,config
+
+mybatis:
+  #sql映射文件
+  mapper-locations: classpath:mapper/*.xml
+  #model
+  type-aliases-package: com.history.gismap.model
+
