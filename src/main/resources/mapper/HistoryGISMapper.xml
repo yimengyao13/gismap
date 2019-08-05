@@ -4,13 +4,13 @@
     <resultMap id="pointModelResult" type="com.history.gismap.model.PointModel">
         <result property="gId" column="gid" jdbcType="BIGINT"/>
         <result property="nameCh" column="name_ch" jdbcType="VARCHAR"/>
+        <result property="geometry" column="geom" typeHandler="com.history.gismap.mybatis.GeometryTypeHandler"/>
     </resultMap>
     <sql id="BASE_TABLE">
     v6_time_cnty_pts_utf_wgs84
   </sql>
-
     <sql id="BASE_COLUMN">
-    gid,name_ch
+    gid,name_ch,geom
   </sql>
     <select id="getCntyPoint" resultMap="pointModelResult">
         SELECT
@@ -29,6 +29,9 @@
             <if test="nameCh != null">
                 name_ch,
             </if>
+            <if test="geometry != null">
+                geom,
+            </if>
         </trim>
         <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
             <if test="gId != null">
@@ -37,13 +40,17 @@
             <if test="nameCh != null">
                 #{nameCh, jdbcType=VARCHAR},
             </if>
+            <if test="geometry != null">
+                #{geometry,typeHandler=com.history.gismap.mybatis.GeometryTypeHandler}
+            </if>
         </trim>
     </insert>
     <update id="updateCntyPoint" parameterType="com.history.gismap.model.PointModel">
         UPDATE
         <include refid="BASE_TABLE"/>
         SET
-            name_ch=#{nameCh}
+            name_ch=#{nameCh},
+            geom=#{geometry,typeHandler=com.history.gismap.mybatis.GeometryTypeHandler}
         WHERE
         gid=#{gId}
     </update>

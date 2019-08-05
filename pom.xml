@@ -110,6 +110,13 @@
             <artifactId>jts</artifactId>
             <version>1.13</version>
         </dependency>
+        <!--引入alibaba的json处理jar包-->
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.47</version>
+        </dependency>
 
     </dependencies>
 

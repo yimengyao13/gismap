@@ -3,6 +3,11 @@ package com.history.gismap;
 import com.history.gismap.dao.MapDao;
 import com.history.gismap.model.PointModel;
 import com.history.gismap.service.MapService;
+import com.vividsolutions.jts.geom.Geometry;
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.Point;
+import com.vividsolutions.jts.io.ParseException;
+import com.vividsolutions.jts.io.WKTReader;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +30,18 @@ public class GismapApplicationTests {
     }
     @Test
     public void add(){
-        PointModel pointModel=new PointModel();
-        pointModel.setGId(14353);
-        pointModel.setNameCh("test");
-        mapDao.insertCntyPoint(pointModel);
+        GeometryFactory geometryFactory = new GeometryFactory();
+        WKTReader reader = new WKTReader( geometryFactory );
+        try {
+            Geometry point = reader.read("POINT (109.013388 32.715519)");
+            PointModel pointModel=new PointModel();
+            pointModel.setGId(14353);
+            pointModel.setNameCh("test");
+            pointModel.setGeometry(point);
+            mapDao.insertCntyPoint(pointModel);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
     @Test
     public void addservice(){
@@ -42,5 +55,20 @@ public class GismapApplicationTests {
 //        mapDao.deleteCntyPoint(14353);
         mapService.removeCntyPoint(14354);
     }
+    @Test
+    public void update(){
+        GeometryFactory geometryFactory = new GeometryFactory();
+        WKTReader reader = new WKTReader( geometryFactory );
+        try {
+            Geometry point = reader.read("POINT (0 0)");
+            PointModel pointModel=new PointModel();
+            pointModel.setGId(14353);
+            pointModel.setNameCh("test");
+            pointModel.setGeometry(point);
+            mapDao.updateCntyPoint(pointModel);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
+    }
 }
