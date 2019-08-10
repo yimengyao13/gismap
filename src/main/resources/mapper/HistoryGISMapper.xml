@@ -1,63 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.history.gismap.dao.MapDao" >
-    <resultMap id="pointModelResult" type="com.history.gismap.model.PointModel">
+    <resultMap id="geometryModelResult" type="com.history.gismap.model.GeometryModel">
         <result property="gId" column="gid" jdbcType="BIGINT"/>
+        <result property="namePy" column="name_py" jdbcType="VARCHAR"/>
         <result property="nameCh" column="name_ch" jdbcType="VARCHAR"/>
+        <result property="nameFt" column="name_ft" jdbcType="VARCHAR"/>
+        <result property="presLoc" column="pres_loc" jdbcType="VARCHAR"/>
+        <result property="typePy" column="type_py" jdbcType="VARCHAR"/>
+        <result property="typeCh" column="type_ch" jdbcType="VARCHAR"/>
+        <result property="levRank" column="lev_rank" jdbcType="VARCHAR"/>
+        <result property="begYr" column="beg_yr" jdbcType="BIGINT"/>
+        <result property="begRule" column="beg_rule" jdbcType="VARCHAR"/>
+        <result property="endYr" column="end_yr" jdbcType="BIGINT"/>
+        <result property="endRule" column="end_rule" jdbcType="VARCHAR"/>
+        <result property="geoSrc" column="geo_src" jdbcType="VARCHAR"/>
+        <result property="compiler" column="compiler" jdbcType="VARCHAR"/>
+        <result property="gecomplr" column="gecomplr" jdbcType="VARCHAR"/>
+        <result property="checker" column="checker" jdbcType="VARCHAR"/>
+        <result property="entDate" column="ent_date" jdbcType="VARCHAR"/>
+        <result property="begChgTy" column="beg_chg_ty" jdbcType="VARCHAR"/>
+        <result property="endChgTy" column="end_chg_ty" jdbcType="VARCHAR"/>
         <result property="geometry" column="geom" typeHandler="com.history.gismap.mybatis.GeometryTypeHandler"/>
     </resultMap>
-    <sql id="BASE_TABLE">
-    v6_time_cnty_pts_utf_wgs84
-  </sql>
+    <sql id="CNTY_PTS">
+        v6_time_cnty_pts_utf_wgs84
+    </sql>
+    <sql id="PREF_PTS">
+        v6_time_pref_pts_utf_wgs84
+    </sql>
+    <sql id="PREF_PGN">
+        v6_time_pref_pgn_utf_wgs84
+    </sql>
     <sql id="BASE_COLUMN">
-    gid,name_ch,geom
-  </sql>
-    <select id="getCntyPoint" resultMap="pointModelResult">
+        gid,name_py,name_ch,name_ft,pres_loc,type_py,type_ch,lev_rank,beg_yr,beg_rule,end_yr,end_rule,geo_src,compiler,gecomplr,checker,ent_date,beg_chg_ty,end_chg_ty,geom
+    </sql>
+    <select id="getCntyPoint" resultMap="geometryModelResult">
         SELECT
         <include refid="BASE_COLUMN"></include>
         FROM
-        <include refid="BASE_TABLE"/>
-        WHERE gid=#{gId}
+        <include refid="CNTY_PTS"/>
+        WHERE gid=#{gId} LIMIT 1
     </select>
-    <insert id="insertCntyPoint" parameterType="com.history.gismap.model.PointModel">
-        INSERT INTO
-        <include refid="BASE_TABLE"/>
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="gId != null">
-                gid,
-            </if>
-            <if test="nameCh != null">
-                name_ch,
-            </if>
-            <if test="geometry != null">
-                geom,
-            </if>
-        </trim>
-        <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
-            <if test="gId != null">
-                #{gId, jdbcType=BIGINT},
-            </if>
-            <if test="nameCh != null">
-                #{nameCh, jdbcType=VARCHAR},
-            </if>
-            <if test="geometry != null">
-                #{geometry,typeHandler=com.history.gismap.mybatis.GeometryTypeHandler}
-            </if>
-        </trim>
-    </insert>
-    <update id="updateCntyPoint" parameterType="com.history.gismap.model.PointModel">
-        UPDATE
-        <include refid="BASE_TABLE"/>
-        SET
-            name_ch=#{nameCh},
-            geom=#{geometry,typeHandler=com.history.gismap.mybatis.GeometryTypeHandler}
-        WHERE
-        gid=#{gId}
-    </update>
-    <delete id="deleteCntyPoint" parameterType="com.history.gismap.model.PointModel">
-        DELETE FROM
-        <include refid="BASE_TABLE"/>
-        WHERE
-        gid=#{gId}
-    </delete>
+    <select id="getprefPolygon" resultMap="geometryModelResult">
+        SELECT
+        <include refid="BASE_COLUMN"></include>
+        FROM
+        <include refid="PREF_PGN"/>
+        WHERE gid=#{gId} LIMIT 1
+    </select>
+
+    <select id="getPrefPoint" resultMap="geometryModelResult">
+        SELECT
+        <include refid="BASE_COLUMN"></include>
+        FROM
+        <include refid="PREF_PTS"/>
+        WHERE gid=#{gId} LIMIT 1
+    </select>
 </mapper>

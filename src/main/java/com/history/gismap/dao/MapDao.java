@@ -1,14 +1,10 @@
 package com.history.gismap.dao;
-
-import com.history.gismap.model.PointModel;
+import com.history.gismap.model.GeometryModel;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
-import java.util.List;
-
 @Service
 public interface MapDao {
-    List<PointModel> getCntyPoint(@Param("gId") Integer gId);
-    int insertCntyPoint(PointModel pointModel);
-    int updateCntyPoint(PointModel pointModel);
-    int deleteCntyPoint(@Param("gId") Integer gId);
+    GeometryModel getCntyPoint(@Param("gId") Integer gId);
+    GeometryModel getPrefPoint(@Param("gId") Integer gId);
+    GeometryModel getprefPolygon(@Param("gId") Integer gId);
 }

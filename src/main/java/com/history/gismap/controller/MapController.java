@@ -3,7 +3,7 @@ package com.history.gismap.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.JSONPath;
-import com.history.gismap.model.PointModel;
+import com.history.gismap.model.GeometryModel;
 import com.history.gismap.service.MapService;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
@@ -14,67 +14,64 @@ import com.vividsolutions.jts.io.WKTReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @Controller
 @RequestMapping(value = "/history")
 public class MapController {
     @Autowired
     private MapService mapService;
     @ResponseBody
-    @GetMapping("/pointmodel")
-    public JSONObject getPoint(@RequestParam("gid") Integer gId){
-        PointModel pointModel=mapService.getCntyPointByGid(gId).get(0);
+    @GetMapping("/geometry")
+    public JSONObject getPoint(@RequestParam("category") String category,@RequestParam("start") Integer start,@RequestParam("end") Integer end){
+        List<GeometryModel> result=mapService.getDynastyGeom(category,start,end);
         JSONObject jsonObject=new JSONObject();
-        jsonObject.put("gid",pointModel.getGId());
-        jsonObject.put("namech",pointModel.getNameCh());
-        JSONObject geometry=new JSONObject();
-        geometry.put("type",pointModel.getGeometry().getGeometryType());
-        JSONArray coordinateArray=new JSONArray();
-        Coordinate[] coordinates=pointModel.getGeometry().getCoordinates();
-        JSONObject coor=new JSONObject();
-        coor.put("longitude",coordinates[0].x);
-        coor.put("latitude",coordinates[0].y);
-        coordinateArray.add(coor);
-        geometry.put("coordinate",coordinateArray);
-        jsonObject.put("geometry",geometry);
+        jsonObject.put("number",result.size());
+        JSONArray jsonArray=new JSONArray();
+        for (GeometryModel g:result) {
+            JSONObject geom=new JSONObject();
+            geom.put("gid",g.getGId());
+            geom.put("namepy",g.getNamePy());
+            geom.put("namech",g.getNameCh());
+            geom.put("nameft",g.getNameFt());
+            geom.put("presloc",g.getPresLoc());
+            geom.put("typepy",g.getTypePy());
+            geom.put("typech",g.getTypeCh());
+            geom.put("levrank",g.getLevRank());
+            geom.put("begyr",g.getBegYr());
+            geom.put("begrule",g.getBegRule());
+            geom.put("endyr",g.getEndYr());
+            geom.put("endrule",g.getEndRule());
+            geom.put("geosrc",g.getGeoSrc());
+            geom.put("compiler",g.getCompiler());
+            geom.put("gecomplr",g.getGecomplr());
+            geom.put("checker",g.getChecker());
+            geom.put("entdate",g.getEntDate());
+            geom.put("begchgty",g.getBegChgTy());
+            geom.put("endchgty",g.getEndChgTy());
+            geom.put("geometry",g.getGeometry().toString());
+            jsonArray.add(geom);
+        }
+        jsonObject.put("list",jsonArray);
         return jsonObject;
     }
-    @ResponseBody
-    @PostMapping("/add")
-    public int addPoint(@RequestBody JSONObject request){
-        PointModel pointModel=new PointModel();
-        pointModel.setGId((Integer) JSONPath.eval(request,"$.gId"));
-        pointModel.setNameCh((String) JSONPath.eval(request,"$.nameCh"));
-        String pointStr= (String) JSONPath.eval(request,"$.point");
-        GeometryFactory geometryFactory = new GeometryFactory();
-        WKTReader reader = new WKTReader( geometryFactory );
-        try {
-            Geometry point = (Point) reader.read(pointStr);
-            pointModel.setGeometry(point);
-        } catch (ParseException e) {
-            e.printStackTrace();
+    private JSONObject geometryToJson(Geometry geometry){
+        JSONObject jsonObject=new JSONObject();
+        jsonObject.put("type",geometry.getGeometryType());
+        JSONArray coorList=new JSONArray();
+        for (int i=0;i<geometry.getNumGeometries();i++){
+            JSONArray coors=new JSONArray();
+            Coordinate[] coordinates=geometry.getGeometryN(i).getCoordinates();
+            for (Coordinate c:coordinates) {
+                JSONObject jsonObjectCoor=new JSONObject();
+                jsonObjectCoor.put("lng",c.x);
+                jsonObjectCoor.put("lat",c.y);
+                coors.add(jsonObjectCoor);
+            }
+            coorList.add(coors);
         }
-        return mapService.addCntyPoint(pointModel);
-    }
-    @ResponseBody
-    @PostMapping("/modify")
-    public int update(@RequestBody JSONObject request){
-        PointModel pointModel=new PointModel();
-        pointModel.setGId((Integer) JSONPath.eval(request,"$.gId"));
-        pointModel.setNameCh((String) JSONPath.eval(request,"$.nameCh"));
-        String pointStr= (String) JSONPath.eval(request,"$.point");
-        GeometryFactory geometryFactory = new GeometryFactory();
-        WKTReader reader = new WKTReader( geometryFactory );
-        try {
-            Geometry point = (Point) reader.read(pointStr);
-            pointModel.setGeometry(point);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return mapService.modifyCntyPoint(pointModel);
-    }
-    @ResponseBody
-    @GetMapping("/remove")
-    public int removetPoint(@RequestParam("gid") Integer gId){
-        return mapService.removeCntyPoint(gId);
+        jsonObject.put("coordinates",coorList);
+        return jsonObject;
     }
 }
