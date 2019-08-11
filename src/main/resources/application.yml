@@ -32,4 +32,6 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   #model
   type-aliases-package: com.history.gismap.model
-
+#log日志配置
+logging:
+  config: classpath:logback-boot.xml
