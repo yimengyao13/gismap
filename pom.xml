@@ -117,7 +117,20 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.47</version>
         </dependency>
+        <dependency>
+            <groupId>org.geotools</groupId>
+            <artifactId>gt-geojson</artifactId>
+            <version>9.3</version>
+        </dependency>
+
     </dependencies>
+    <repositories>
+        <repository>
+            <id>OSGeo Repository</id>
+            <url>http://download.osgeo.org/webdav/geotools/</url>
+        </repository>
+    </repositories>
+
 
     <build>
         <plugins>

@@ -6,9 +6,12 @@ import com.history.gismap.service.MapService;
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
 import lombok.extern.slf4j.Slf4j;
+import org.geotools.geojson.geom.GeometryJSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.StringWriter;
 import java.util.List;
 
 @Controller
@@ -32,6 +35,7 @@ public class MapController {
             JSONObject jsonObject=new JSONObject();
             jsonObject.put("number",result.size());
             JSONArray jsonArray=new JSONArray();
+            GeometryJSON geometryJSON=new GeometryJSON();
             for (GeometryModel g:result) {
                 JSONObject geom=new JSONObject();
                 geom.put("gid",g.getGId());
@@ -53,7 +57,9 @@ public class MapController {
                 geom.put("entdate",g.getEntDate());
                 geom.put("begchgty",g.getBegChgTy());
                 geom.put("endchgty",g.getEndChgTy());
-                geom.put("geometry",g.getGeometry().toString());
+                StringWriter writer = new StringWriter();
+                geometryJSON.write(g.getGeometry(),writer);
+                geom.put("geometry",JSONObject.parse(writer.toString()));
                 jsonArray.add(geom);
             }
             jsonObject.put("list",jsonArray);
@@ -64,22 +70,5 @@ public class MapController {
             return null;
         }
     }
-    private JSONObject geometryToJson(Geometry geometry){
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("type",geometry.getGeometryType());
-        JSONArray coorList=new JSONArray();
-        for (int i=0;i<geometry.getNumGeometries();i++){
-            JSONArray coors=new JSONArray();
-            Coordinate[] coordinates=geometry.getGeometryN(i).getCoordinates();
-            for (Coordinate c:coordinates) {
-                JSONObject jsonObjectCoor=new JSONObject();
-                jsonObjectCoor.put("lng",c.x);
-                jsonObjectCoor.put("lat",c.y);
-                coors.add(jsonObjectCoor);
-            }
-            coorList.add(coors);
-        }
-        jsonObject.put("coordinates",coorList);
-        return jsonObject;
-    }
+
 }
