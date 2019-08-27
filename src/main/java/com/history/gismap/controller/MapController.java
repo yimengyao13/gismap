@@ -29,6 +29,7 @@ public class MapController {
      */
     @ResponseBody
     @GetMapping("/geometry")
+    @CrossOrigin
     public JSONObject getPoint(@RequestParam("category") String category,@RequestParam("start") Integer start,@RequestParam("end") Integer end){
         try {
             List<GeometryModel> result=mapService.getDynastyGeom(category,start,end);

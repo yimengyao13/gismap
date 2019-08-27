@@ -1,0 +1,49 @@
+2019-08-24 20:14:26,940 INFO (StartupInfoLogger.java:50)- Starting GismapApplication on DESKTOP-GAD100G with PID 16512 (D:\gismap\java\master\gismap\target\classes started by wujin in D:\gismap\java\master\gismap)
+2019-08-24 20:14:26,998 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-24 20:19:15,529 INFO (StartupInfoLogger.java:50)- Starting GismapApplication on DESKTOP-GAD100G with PID 16860 (D:\gismap\java\master\gismap\target\classes started by wujin in D:\gismap\java\master\gismap)
+2019-08-24 20:19:15,571 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-24 20:19:37,334 INFO (StartupInfoLogger.java:59)- Started GismapApplication in 22.215 seconds (JVM running for 23.592)
+2019-08-24 20:19:53,393 INFO (MapController.java:67)- 入参类别：prefpgn，起始时间：-5000，截至时间：-221
+2019-08-24 20:20:21,541 INFO (MapController.java:67)- 入参类别：prefpgn，起始时间：-5000，截至时间：-221
+2019-08-24 20:33:14,692 INFO (StartupInfoLogger.java:50)- Starting GismapApplication on DESKTOP-GAD100G with PID 1012 (D:\gismap\java\master\gismap\target\classes started by wujin in D:\gismap\java\master\gismap)
+2019-08-24 20:33:14,696 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-24 20:33:34,642 INFO (StartupInfoLogger.java:59)- Started GismapApplication in 20.565 seconds (JVM running for 21.451)
+2019-08-24 20:43:26,564 INFO (MapController.java:67)- 入参类别：prefpgn，起始时间：-5000，截至时间：-221
+2019-08-24 20:54:10,463 INFO (MapController.java:67)- 入参类别：prefpgn，起始时间：-5000，截至时间：-221
+2019-08-24 20:54:37,783 INFO (MapController.java:67)- 入参类别：prefpgn，起始时间：-5000，截至时间：-221
+2019-08-24 20:54:47,138 INFO (MapController.java:67)- 入参类别：prefpgn，起始时间：-5000，截至时间：-221
+2019-08-24 21:38:40,332 INFO (MapController.java:67)- 入参类别：prefpgn，起始时间：-5000，截至时间：-221
+2019-08-24 22:03:53,478 INFO (MapController.java:67)- 入参类别：prefpgn，起始时间：-5000，截至时间：-221
+2019-08-24 22:04:05,836 INFO (MapController.java:67)- 入参类别：prefpgn，起始时间：-5000，截至时间：-221
+2019-08-24 22:15:28,807 INFO (MapController.java:67)- 入参类别：prefpgn，起始时间：-5000，截至时间：-221
+2019-08-24 23:07:29,942 INFO (MapController.java:67)- 入参类别：prefpgn，起始时间：-5000，截至时间：-221
+2019-08-24 23:11:54,285 INFO (MapController.java:67)- 入参类别：prefpgn，起始时间：-5000，截至时间：-221
+2019-08-24 23:29:37,053 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：1277，截至时间：1368
+2019-08-24 23:33:58,354 INFO (MapController.java:67)- 入参类别：prefpgn，起始时间：1645，截至时间：1840
+2019-08-24 23:34:06,918 INFO (MapController.java:67)- 入参类别：prefpts，起始时间：1645，截至时间：1840
+2019-08-24 23:38:55,564 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：-5000，截至时间：-221
+2019-08-24 23:38:55,570 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：-220，截至时间：-202
+2019-08-24 23:38:55,574 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：908，截至时间：960
+2019-08-24 23:38:55,635 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：1645，截至时间：1840
+2019-08-24 23:38:55,650 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：1369，截至时间：1644
+2019-08-24 23:38:55,654 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：-201，截至时间：220
+2019-08-24 23:38:55,662 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：221，截至时间：589
+2019-08-24 23:38:55,662 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：961，截至时间：1276
+2019-08-24 23:38:55,669 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：590，截至时间：907
+2019-08-24 23:38:55,673 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：1277，截至时间：1368
+2019-08-24 23:42:45,349 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：-220，截至时间：-202
+2019-08-24 23:42:45,350 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：-5000，截至时间：-221
+2019-08-24 23:42:45,360 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：908，截至时间：960
+2019-08-24 23:42:45,398 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：-201，截至时间：220
+2019-08-24 23:42:45,400 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：1277，截至时间：1368
+2019-08-24 23:42:45,405 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：221，截至时间：589
+2019-08-24 23:42:45,483 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：961，截至时间：1276
+2019-08-24 23:42:45,484 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：1369，截至时间：1644
+2019-08-24 23:42:45,500 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：590，截至时间：907
+2019-08-24 23:42:45,501 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：1645，截至时间：1840
+2019-08-24 23:44:22,242 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：-5000，截至时间：-221
+2019-08-24 23:46:10,564 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：-5000，截至时间：-221
+2019-08-24 23:50:23,975 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：-5000，截至时间：-221
+2019-08-24 23:53:03,584 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：-5000，截至时间：-221
+2019-08-24 23:55:52,647 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：-5000，截至时间：-221
+2019-08-24 23:57:38,182 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：-5000，截至时间：-221

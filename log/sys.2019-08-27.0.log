@@ -1,0 +1,7 @@
+2019-08-27 23:31:33,477 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：-5000，截至时间：-221
+2019-08-27 23:49:49,653 INFO (StartupInfoLogger.java:50)- Starting GismapApplication on DESKTOP-GAD100G with PID 19708 (D:\gismap\java\master\gismap\target\classes started by wujin in D:\gismap\java\master\gismap)
+2019-08-27 23:49:49,656 INFO (SpringApplication.java:646)- No active profile set, falling back to default profiles: default
+2019-08-27 23:50:10,639 INFO (StartupInfoLogger.java:59)- Started GismapApplication in 21.834 seconds (JVM running for 23.057)
+2019-08-27 23:52:09,462 INFO (MapController.java:67)- 入参类别：prefpts，起始时间：-5000，截至时间：-221
+2019-08-27 23:52:09,466 INFO (MapController.java:67)- 入参类别：cntypts，起始时间：-5000，截至时间：-221
+2019-08-27 23:52:09,475 INFO (MapController.java:67)- 入参类别：prefpgn，起始时间：-5000，截至时间：-221
